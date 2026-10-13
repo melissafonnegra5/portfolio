@@ -7,8 +7,8 @@
   gap: $space-3;
 }
 
-// El pin de comentario de Figma: un círculo con la esquina inferior
-// izquierda en punta, que señala el lugar del comentario
+// Figma's comment pin: a circle with a pointed bottom-left corner marking
+// where the comment is
 .pin {
   display: grid;
   place-items: center;
@@ -17,7 +17,7 @@
   height: 36px;
   font-size: 13px;
   font-weight: 700;
-  color: $surface;
+  color: $on-accent;
   background: $select;
   border: 2px solid $surface;
   border-radius: 50% 50% 50% 0;

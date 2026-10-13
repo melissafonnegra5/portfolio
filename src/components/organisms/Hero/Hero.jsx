@@ -39,11 +39,11 @@ export default function Hero({ t, id }) {
         <div className={styles.stage}>
           <figure className={styles.photo} data-component="molecules/PhotoFrame">
             <figcaption className={styles.fileName} aria-hidden="true">
-              melissa.jpg
+              melissa.webp
             </figcaption>
             <div className={styles.selection}>
               <Image
-                src="/melissa.jpg"
+                src="/melissa.webp"
                 alt={t.photoAlt}
                 width={400}
                 height={500}

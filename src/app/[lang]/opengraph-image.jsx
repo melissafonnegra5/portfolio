@@ -1,13 +1,14 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
+import sharp from 'sharp';
 import { dictionaries, hasLocale, locales } from '@/content';
 
 export const alt = 'Melissa Fonnegra Zapata, Frontend Developer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-// Una imagen por idioma, generadas en el build
+// One image per language, generated at build time
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
@@ -21,16 +22,17 @@ const handle = (pos) => ({
   ...pos,
 });
 
-// En caché para que la imagen se genere una vez en el build y no en cada visita
+// Cached so the image is generated once at build time, not on every visit
 async function getAssets() {
   'use cache';
   const [photo, extraBold, regular] = await Promise.all([
-    readFile(join(process.cwd(), 'public/melissa.jpg')),
+    readFile(join(process.cwd(), 'public/melissa.webp')),
     readFile(join(process.cwd(), 'src/assets/BricolageGrotesque-ExtraBold.ttf')),
     readFile(join(process.cwd(), 'src/assets/BricolageGrotesque-Regular.ttf')),
   ]);
   return {
-    src: `data:image/jpeg;base64,${photo.toString('base64')}`,
+    // Satori (behind ImageResponse) can't decode WebP, so it gets a PNG copy
+    src: `data:image/png;base64,${(await sharp(photo).png().toBuffer()).toString('base64')}`,
     extraBold: extraBold.toString('base64'),
     regular: regular.toString('base64'),
   };
@@ -68,7 +70,7 @@ export default async function Image({ params }) {
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: 20, color: '#0862cc', marginBottom: 10 }}>melissa.jpg</div>
+          <div style={{ fontSize: 20, color: '#0862cc', marginBottom: 10 }}>melissa.webp</div>
           <div style={{ position: 'relative', display: 'flex', border: '2.5px solid #0862cc' }}>
             <img src={src} width={340} height={425} alt="" />
             <div style={handle({ top: -8, left: -8 })} />

@@ -27,27 +27,23 @@
   border-color: $select;
 }
 
-// Cada recuadro se llena cuando el relleno del riel lo alcanza (mitad de
-// pantalla). Sin soporte o con movimiento reducido, se queda como arriba.
-@keyframes check {
-  from {
-    background: $paper;
-    border-color: $ink;
-  }
+// While the Timeline tracks the scroll, only the items the rail has
+// reached are filled
+:global([data-tracking]) .item:not([data-reached]) .marker {
+  background: $paper;
+  border-color: $ink;
+}
 
-  to {
-    background: $select;
-    border-color: $select;
-  }
+:global([data-tracking]) .item[data-reached] .marker {
+  background: $select;
+  border-color: $select;
 }
 
 @include motion {
-  @supports (animation-timeline: view()) {
-    .marker {
-      animation: check linear both;
-      animation-timeline: view();
-      animation-range: cover calc(50vh - 6px) cover calc(50vh + 6px);
-    }
+  .marker {
+    transition:
+      background $duration-fast,
+      border-color $duration-fast;
   }
 }
 

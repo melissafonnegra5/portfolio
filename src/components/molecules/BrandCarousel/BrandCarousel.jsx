@@ -15,9 +15,8 @@ const chunk = (items, size) =>
   );
 
 /**
- * Las marcas de un filtro en páginas de 4 que se deslizan (solo en móvil).
- * Quien lo use le pone key con el filtro, así cada filtro arranca en su
- * primera página.
+ * A filter's brands in swipeable pages of 4 (mobile only). The parent keys
+ * it by filter, so each filter starts on its first page.
  * @param {{
  *   brands: { name: string, type: string, url?: string }[],
  *   labels: Record<string, string>,
@@ -28,7 +27,7 @@ export default function BrandCarousel({ brands, labels, cardLabels }) {
   const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [viewportRef, embla] = useEmblaCarousel({
     align: 'start',
-    // Todas las páginas alineadas a la izquierda, también la última
+    // Every page left-aligned, including the last one
     containScroll: false,
     duration: reduceMotion ? 10 : 25,
   });

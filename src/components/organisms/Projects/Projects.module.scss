@@ -20,40 +20,9 @@
   }
 }
 
-.work {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: $space-6 $space-8;
-  margin-bottom: $space-7;
-
-  @include down($bp-md) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.responsibilities {
-  display: grid;
-  gap: $space-3;
-  max-width: $measure;
-
-  li {
-    position: relative;
-    padding-left: $space-5;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.7em;
-      width: 8px;
-      height: 1.5px;
-      background: $select;
-    }
-  }
-}
-
 .stack {
   display: flex;
+  margin-bottom: $space-6;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: $space-2;

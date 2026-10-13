@@ -29,8 +29,8 @@
   }
 }
 
-// Las cuatro manijas de una selección de Figma. El elemento necesita
-// position: relative y contener <span class="handle"> ×4.
+// The four handles of a Figma selection. The element needs
+// position: relative and four <span class="handle"> children.
 @mixin selection-handles($color: $select) {
   .handle {
     position: absolute;
@@ -47,7 +47,7 @@
   }
 }
 
-// Oculto a la vista pero disponible para lectores de pantalla
+// Hidden visually but available to screen readers
 @mixin visually-hidden {
   position: absolute;
   width: 1px;
@@ -65,7 +65,17 @@
   outline-offset: 3px;
 }
 
-// Reglas extra para el modo de alto contraste (botón o preferencia del sistema)
+// Hover styles only for a real mouse: on touch screens a tap would leave
+// the hover state stuck
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Extra rules for high contrast mode (button or system preference)
 @mixin contrast {
   :global(html[data-contrast='more']) & {
     @content;

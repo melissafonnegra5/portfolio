@@ -1,24 +1,33 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import ContrastToggle from '@/components/atoms/ContrastToggle';
+import PreferenceToggle from '@/components/atoms/PreferenceToggle';
 import LangSwitch from '@/components/atoms/LangSwitch';
 import Logo from '@/components/atoms/Logo';
 import Inspector from '@/components/molecules/Inspector';
 import styles from './Navbar.module.scss';
+
+// Keeps the browser bar color in sync with the chosen theme
+const syncThemeColor = () => {
+  const color = getComputedStyle(document.body).backgroundColor;
+  document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+    meta.content = color;
+  });
+};
 
 /**
  * @param {{
  *   links: { id: string, label: string }[],
  *   ids: Record<string, string>,
  *   ui: Record<string, any>,
+ *   targetIds: Record<string, string>,
  * }} props
  */
-export default function Navbar({ links, ids, ui }) {
+export default function Navbar({ links, ids, ui, targetIds }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState('');
 
-  // La sección activa es la que cruza la franja superior de la pantalla
+  // The active section is the one crossing the upper band of the screen
   useEffect(() => {
     const sections = links.map((link) => document.getElementById(ids[link.id])).filter(Boolean);
     const observer = new IntersectionObserver(
@@ -72,8 +81,23 @@ export default function Navbar({ links, ids, ui }) {
         </nav>
 
         <div className={styles.actions}>
-          <LangSwitch {...ui.switchLang} />
-          <ContrastToggle label={ui.contrast} />
+          <LangSwitch {...ui.switchLang} ids={ids} targetIds={targetIds} />
+          <PreferenceToggle
+            name="theme"
+            on="dark"
+            off="light"
+            icon="moon"
+            label={ui.dark}
+            onChange={syncThemeColor}
+          />
+          <PreferenceToggle
+            name="contrast"
+            on="more"
+            off="normal"
+            icon="contrast"
+            label={ui.contrast}
+            showLabel
+          />
           <Inspector label={ui.inspect} message={ui.inspectOn} />
           <button
             type="button"

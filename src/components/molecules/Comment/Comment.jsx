@@ -1,8 +1,7 @@
 import styles from './Comment.module.scss';
 
 /**
- * Un comentario de Figma: el pin con las iniciales de quien lo escribió y
- * la burbuja con el texto.
+ * A Figma comment: the pin with the author's initials and the text bubble.
  * @param {{ initials: string, title: string, text: string }} props
  */
 export default function Comment({ initials, title, text }) {

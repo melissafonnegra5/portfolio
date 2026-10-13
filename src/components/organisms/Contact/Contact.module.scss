@@ -7,8 +7,9 @@
   padding-block: $space-9 $space-6;
   background: $night;
   color: $night-text;
+  border-top: 1px solid $night-line;
 
-  // El lienzo de Figma en modo oscuro
+  // Figma's canvas in dark mode
   &::before {
     content: '';
     position: absolute;
@@ -33,7 +34,7 @@
   font-weight: 800;
   line-height: $leading-tight;
   letter-spacing: -0.03em;
-  font-variation-settings: 'wdth' 88;
+  font-variation-settings: 'wdth' 78;
 }
 
 .lead {
@@ -50,7 +51,7 @@
   margin-top: $space-6;
 }
 
-// Melissa señalando su propio correo
+// Melissa pointing at her own email
 .cursor {
   top: 70%;
   left: 92%;
@@ -86,7 +87,7 @@
   overflow-wrap: anywhere;
   transition: text-decoration-color $duration-fast;
 
-  &:hover {
+  @include hover {
     text-decoration-color: $night-accent;
   }
 }
@@ -113,7 +114,7 @@
     font-weight: 600;
     text-underline-offset: 4px;
 
-    &:hover {
+    @include hover {
       color: $night-accent;
     }
   }

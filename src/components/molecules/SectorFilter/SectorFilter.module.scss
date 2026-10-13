@@ -8,14 +8,14 @@
   margin-bottom: $space-6;
 }
 
-// Ancla del cursor "Tú": la flecha apunta al último filtro
+// Anchor for the "You" cursor: the arrow points at the last filter
 .nudge {
   position: relative;
   width: 150px;
   height: 44px;
   margin-left: -6px;
 
-  // La punta toca el borde del último botón y la burbuja no tapa las tarjetas
+  // The tip touches the last button and the bubble stays clear of the cards
   > span {
     top: 10px;
     left: -2px;
@@ -54,13 +54,13 @@
     border-color $duration-fast,
     background $duration-fast;
 
-  &:hover {
+  @include hover {
     border-color: $ink;
   }
 
   &[aria-pressed='true'] {
     background: $ink;
     border-color: $ink;
-    color: $surface;
+    color: $on-ink;
   }
 }

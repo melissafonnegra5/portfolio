@@ -12,10 +12,18 @@ const paths = {
     </g>
   ),
   contrast: (
-    <g fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" />
+    <g fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 20 12 4l8 16M7.5 14h9" />
     </g>
+  ),
+  moon: (
+    <path
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinejoin="round"
+      d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"
+    />
   ),
   inspect: (
     <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -26,7 +34,7 @@ const paths = {
 };
 
 /**
- * Iconos SVG decorativos; quien los use debe dar el nombre accesible.
+ * Decorative SVG icons; the caller provides the accessible name.
  * @param {{ name: keyof typeof paths, size?: number }} props
  */
 export default function Icon({ name, size = 18 }) {

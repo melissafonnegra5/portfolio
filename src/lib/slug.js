@@ -1,4 +1,4 @@
-/** "Constructora Bolívar" → "constructora-bolivar" (ids, nombres de transición) */
+/** "Constructora Bolívar" → "constructora-bolivar" (ids, transition names) */
 export const slug = (text) =>
   text
     .normalize('NFD')

@@ -1,4 +1,5 @@
 @use 'tokens' as *;
+@use 'mixins' as *;
 
 .button {
   display: inline-flex;
@@ -18,9 +19,9 @@
 
 .primary {
   background: $ink;
-  color: $surface;
+  color: $on-ink;
 
-  &:hover {
+  @include hover {
     background: $select;
     border-color: $select;
   }
@@ -30,7 +31,7 @@
   background: transparent;
   color: $ink;
 
-  &:hover {
+  @include hover {
     box-shadow: inset 0 0 0 1px $ink;
   }
 }

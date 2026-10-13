@@ -3,7 +3,7 @@
 
 .viewport {
   overflow: hidden;
-  // Deja ver el borde de la siguiente página: así se nota que se puede deslizar
+  // Shows the edge of the next page, hinting that it can be swiped
   margin-inline: -$gutter-mobile;
   padding-inline: $gutter-mobile;
 }
@@ -54,7 +54,7 @@
   display: flex;
 }
 
-// Botón de 32px para que sea fácil de tocar; el punto visible es más pequeño
+// 32px button so it's easy to tap; the visible dot is smaller
 .dot {
   display: grid;
   place-items: center;

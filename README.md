@@ -1,45 +1,45 @@
 # Portfolio · Melissa Fonnegra Zapata
 
-Portafolio bilingüe (español en `/`, inglés en `/en`) hecho con Next.js 16, React 19, JavaScript ES6+ y SASS con Atomic Design.
+Bilingual portfolio (Spanish at `/`, English at `/en`) built with Next.js 16, React 19, JavaScript ES6+ and SASS with Atomic Design.
 
-Publicado en https://melissafonnegra.vercel.app
+Live at https://melissafonnegra.vercel.app
 
-## Desarrollo local
+## Local development
 
-El proyecto corre en DDEV:
+The project runs on DDEV:
 
 ```bash
 ddev start          # https://portfolio.ddev.site
 ddev npm install
 ```
 
-| Comando                 | Qué hace                                                      |
-| ----------------------- | ------------------------------------------------------------- |
-| `npm run dev`           | Servidor de desarrollo (DDEV ya lo arranca solo)              |
-| `npm run build`         | Build de producción                                           |
-| `npm run lint`          | ESLint                                                        |
-| `npm run check:content` | Verifica que `es` y `en` tengan los mismos textos y listas    |
+| Command                 | What it does                                             |
+| ----------------------- | -------------------------------------------------------- |
+| `npm run dev`           | Development server (DDEV starts it automatically)        |
+| `npm run build`         | Production build                                         |
+| `npm run lint`          | ESLint                                                   |
+| `npm run check:content` | Checks that `es` and `en` have the same strings and lists |
 
-## Estructura
+## Structure
 
 ```
 src/
 ├── app/
-│   ├── [lang]/            layout, página, imágenes OG e íconos por idioma
+│   ├── [lang]/            layout, page, OG images and icons per language
 │   ├── global-not-found.jsx
-│   ├── manifest.js · robots.js · sitemap.js
+│   └── manifest.js · robots.js · sitemap.js
 ├── components/
-│   ├── atoms/             piezas mínimas: Button, Tag, Cursor, StickyNote…
-│   ├── molecules/         combinaciones: ProjectCard, BrandCarousel, SectorFilter…
-│   ├── organisms/         secciones completas: Hero, About, Projects, Navbar…
-│   └── templates/         estructura compartida: Section
-├── content/               todos los textos del sitio (es.js, en.js)
-├── hooks/                 hooks de React (useMediaQuery)
-├── lib/                   utilidades sin React (site, slug, fill, techIcons)
-└── styles/                tokens, paleta, mixins y estilos globales
+│   ├── atoms/             smallest pieces: Button, Tag, Cursor, StickyNote, PreferenceToggle…
+│   ├── molecules/         combinations: ProjectCard, BrandCarousel, SectorFilter, Timeline…
+│   ├── organisms/         full sections: Hero, About, Projects, Navbar…
+│   └── templates/         shared structure: Section
+├── content/               all site copy (es.js, en.js)
+├── hooks/                 React hooks (useMediaQuery)
+├── lib/                   plain utilities (site, slug, fill, scroll, techIcons)
+└── styles/                tokens, palette, mixins and global styles
 ```
 
-Cada componente vive en su propia carpeta:
+Each component lives in its own folder:
 
 ```
 components/molecules/ProjectCard/
@@ -48,19 +48,22 @@ components/molecules/ProjectCard/
 └── index.js               export { default } from './ProjectCard';
 ```
 
-y se importa por su carpeta: `import ProjectCard from '@/components/molecules/ProjectCard';`
+and is imported by folder: `import ProjectCard from '@/components/molecules/ProjectCard';`
 
-## Convenciones
+## Conventions
 
-- **Textos:** nada de texto suelto en los componentes. Todo va en `src/content/es.js` y `src/content/en.js` con la misma forma; `npm run check:content` avisa si algo falta en un idioma.
-- **Estilos:** cada módulo SCSS empieza con `@use 'tokens' as *;` (y `@use 'mixins' as *;` si lo necesita). Los colores son variables CSS definidas en `styles/_palette.scss`, así el modo de alto contraste puede cambiarlas; para reglas extra en ese modo está el mixin `contrast`.
-- **Movimiento:** toda animación va dentro del mixin `motion`, para respetar "reducir movimiento".
-- **Servidor primero:** los componentes son de servidor salvo que necesiten estado o eventos (`'use client'`). En Proyectos, solo `BrandExplorer` (filtros y carrusel) corre en el navegador.
-- **Modo inspección:** cada componente lleva `data-component="nivel/Nombre"`, que es lo que muestra el botón "Inspeccionar".
+- **Copy:** no hard-coded text in components. Everything lives in `src/content/es.js` and `src/content/en.js` with the same shape; `npm run check:content` reports anything missing in a language.
+- **Code language:** identifiers and comments in English.
+- **Styles:** every SCSS module starts with `@use 'tokens' as *;` (plus `@use 'mixins' as *;` when needed). Colors are CSS variables defined in `styles/_palette.scss` for the light, dark and high contrast modes.
+- **Preferences:** theme (`data-theme`: light | dark) and contrast (`data-contrast`: normal | more) live on `<html>`. A script in the `<head>` applies the stored choice, or the system preference, before the first paint.
+- **Motion:** every animation goes inside the `motion` mixin, so "reduce motion" is respected.
+- **Hover:** hover styles use the `hover` mixin, which only applies with a real mouse; on touch screens there are no stuck hover states.
+- **Server first:** components are Server Components unless they need state or events (`'use client'`). The mobile carousel is lazy-loaded, so desktop never downloads it.
+- **Inspect mode:** every component has `data-component="level/Name"`, which is what the "Inspect" button shows.
 
-## Agregar un idioma
+## Adding a language
 
-1. Copiar `src/content/en.js` a `src/content/<lang>.js` y traducirlo.
-2. Registrarlo en `src/content/index.js` y darle su `path` (por ejemplo `/pt`).
-3. Hoy el botón de idioma (`ui.switchLang`) lleva al otro idioma; con tres o más, `LangSwitch` debería pasar a ser una lista.
-4. Correr `npm run check:content`.
+1. Copy `src/content/en.js` to `src/content/<lang>.js` and translate it.
+2. Register it in `src/content/index.js` and give it a `path` (for example `/pt`).
+3. The language button (`ui.switchLang`) currently links to the other language; with three or more, `LangSwitch` should become a list.
+4. Run `npm run check:content`.

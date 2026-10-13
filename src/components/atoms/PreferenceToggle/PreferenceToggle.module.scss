@@ -17,19 +17,19 @@
   cursor: pointer;
   transition: background $duration-fast;
 
-  &:hover {
+  @include hover {
     background: $surface;
   }
 
   &[aria-pressed='true'] {
     background: $ink;
-    color: $paper;
+    color: $on-ink;
   }
 }
 
-// En pantallas medianas queda solo el ícono; el texto sigue para lectores
+// Icon only below xl; the text stays for screen readers
 .label {
-  @include down($bp-lg) {
+  @include down($bp-xl) {
     @include visually-hidden;
   }
 }

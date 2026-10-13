@@ -2,11 +2,13 @@ import { fileURLToPath } from 'node:url';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
-// Next.js inyecta scripts inline para hidratar la página estática, por eso
-// 'unsafe-inline'; en desarrollo el HMR además necesita 'unsafe-eval'
+// Next.js injects inline scripts to hydrate the static page, hence
+// 'unsafe-inline'. In development HMR also needs 'unsafe-eval', and Vercel
+// Analytics / Speed Insights load their debug script from va.vercel-scripts.com
+// (in production they're served from /_vercel, on the same domain).
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval' https://va.vercel-scripts.com" : ''}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
@@ -35,21 +37,21 @@ const nextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
-  // Los módulos SCSS importan los tokens con @use 'tokens', sin rutas relativas
+  // SCSS modules import tokens with @use 'tokens', without relative paths
   sassOptions: {
     loadPaths: [fileURLToPath(new URL('./src/styles', import.meta.url))],
   },
-  // DDEV sirve el dev server desde portfolio.ddev.site, no desde localhost
+  // DDEV serves the dev server from portfolio.ddev.site, not localhost
   allowedDevOrigins: ['portfolio.ddev.site'],
   experimental: {
-    // 404 propio: el layout raíz vive en app/[lang], así que no hay uno global
+    // Custom 404: the root layout lives in app/[lang], so there's no global one
     globalNotFound: true,
   },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
-  // El español se sirve en la raíz (la URL de siempre) y el inglés en /en.
-  // /es redirige a / para que no haya dos URLs con el mismo contenido.
+  // Spanish is served at the root (the original URL) and English at /en.
+  // /es redirects to / so the same content never has two URLs.
   async redirects() {
     return [{ source: '/es', destination: '/', permanent: true }];
   },

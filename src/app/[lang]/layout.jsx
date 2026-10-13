@@ -1,25 +1,24 @@
 import { notFound } from 'next/navigation';
-import { Bricolage_Grotesque, IBM_Plex_Mono } from 'next/font/google';
+import { Bricolage_Grotesque } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import PreferencesSync from '@/components/atoms/PreferencesSync';
 import { dictionaries, hasLocale, locales } from '@/content';
+import { applyPreferences } from '@/lib/preferences';
 import { site } from '@/lib/site';
 import '@/styles/globals.scss';
 
+// Only the width axis (wdth), used by the condensed headings. The optical
+// size axis (opsz) almost doubled the file size (131 KB → 78 KB)
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   display: 'swap',
-  axes: ['opsz', 'wdth'],
+  axes: ['wdth'],
   variable: '--font-bricolage',
 });
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  display: 'swap',
-  variable: '--font-plex-mono',
-});
-
-// Solo existen /es (servida en /) y /en; cualquier otro idioma da 404
-// (hasLocale en el layout)
+// Only /es (served at /) and /en exist; any other language is a 404
+// (see hasLocale)
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
@@ -70,13 +69,16 @@ export async function generateMetadata({ params }) {
 
 /** @type {import('next').Viewport} */
 export const viewport = {
-  themeColor: '#ececed',
-  colorScheme: 'light',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ececed' },
+    { media: '(prefers-color-scheme: dark)', color: '#151518' },
+  ],
+  colorScheme: 'light dark',
 };
 
-// Se ejecuta antes de pintar para que el alto contraste no parpadee:
-// primero la elección guardada y, si no hay, la preferencia del sistema
-const contrastScript = `try{var d=document.documentElement,v=localStorage.getItem('contrast');if(v==='more'||v==='normal')d.dataset.contrast=v;else if(matchMedia('(prefers-contrast: more)').matches)d.dataset.contrast='more'}catch(e){}`;
+// Runs before paint so theme and contrast never flash: the stored choice
+// first, otherwise the system preference
+const preferencesScript = `(${applyPreferences.toString()})()`;
 
 function personJsonLd(t) {
   return {
@@ -90,7 +92,7 @@ function personJsonLd(t) {
       alternateName: site.shortName,
       jobTitle: t.meta.jobTitle,
       url: site.url,
-      image: `${site.url}/melissa.jpg`,
+      image: `${site.url}/melissa.webp`,
       email: `mailto:${site.email}`,
       address: {
         '@type': 'PostalAddress',
@@ -131,17 +133,21 @@ export default async function RootLayout({ children, params }) {
   return (
     <html
       lang={t.htmlLang}
-      className={`${bricolage.variable} ${plexMono.variable}`}
-      // El script de contraste cambia data-contrast antes de hidratar
+      className={bricolage.variable}
+      // The preferences script sets data-theme and data-contrast before hydration
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: contrastScript }} />
+        {/* A plain inline script so it runs before first paint. On client
+            navigations React logs a dev-only warning about it, and
+            PreferencesSync re-applies the attributes instead. */}
+        <script dangerouslySetInnerHTML={{ __html: preferencesScript }} />
       </head>
       <body>
         <a href={`#${t.ids.content}`} className="skip-link">
           {t.ui.skip}
         </a>
+        <PreferencesSync />
         {children}
         <script
           type="application/ld+json"
@@ -149,6 +155,8 @@ export default async function RootLayout({ children, params }) {
             __html: JSON.stringify(personJsonLd(t)).replace(/</g, '\\u003c'),
           }}
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

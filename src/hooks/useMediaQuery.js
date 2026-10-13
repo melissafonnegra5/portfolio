@@ -3,9 +3,9 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
 /**
- * true mientras la media query se cumpla. En el servidor (y en la primera
- * hidratación) devuelve false, así que lo que dependa de esto debe verse
- * bien también en su versión "false".
+ * True while the media query matches. On the server (and during the first
+ * hydration) it returns false, so whatever depends on it must also look
+ * right in its "false" version.
  * @param {string} query
  */
 export function useMediaQuery(query) {

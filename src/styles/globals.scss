@@ -2,19 +2,35 @@
 @use 'mixins' as *;
 @use 'palette';
 
-// ===== Paleta =====
+// ===== Palette =====
+// The <head> script always sets data-theme and data-contrast; the media
+// queries only cover visitors without JavaScript.
 :root {
-  @include palette.base;
+  @include palette.light;
 }
 
-html[data-contrast='more'] {
-  @include palette.high-contrast;
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    @include palette.dark;
+  }
+}
+
+html[data-theme='dark'] {
+  @include palette.dark;
 }
 
 @media (prefers-contrast: more) {
   html:not([data-contrast]) {
-    @include palette.high-contrast;
+    @include palette.contrast-light;
   }
+}
+
+html[data-contrast='more'] {
+  @include palette.contrast-light;
+}
+
+html[data-contrast='more'][data-theme='dark'] {
+  @include palette.contrast-dark;
 }
 
 // ===== Reset =====
@@ -83,7 +99,7 @@ p {
   background: $select-soft;
 }
 
-// ===== Accesibilidad =====
+// ===== Accessibility =====
 :focus-visible {
   @include focus-ring;
 }
@@ -99,7 +115,7 @@ main:focus {
   z-index: 2000;
   padding: $space-3 $space-5;
   background: $ink;
-  color: $surface;
+  color: $on-ink;
   font-weight: 600;
   text-decoration: none;
   border-radius: $radius;
@@ -146,7 +162,7 @@ main:focus {
   }
 }
 
-// ===== Modo inspección =====
+// ===== Inspect mode =====
 html[data-inspect='on'] body {
   cursor: crosshair;
 }

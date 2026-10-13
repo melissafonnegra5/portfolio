@@ -1,7 +1,7 @@
 import styles from './Button.module.scss';
 
 /**
- * Enlace con apariencia de botón.
+ * Link styled as a button.
  * @param {{ href: string, variant?: 'primary' | 'secondary', children: React.ReactNode }} props
  */
 export default function Button({ href, variant = 'primary', children, ...rest }) {

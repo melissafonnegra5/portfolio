@@ -1,4 +1,5 @@
 @use 'tokens' as *;
+@use 'mixins' as *;
 
 .tile {
   padding: $space-4 $space-5;
@@ -19,7 +20,7 @@
   display: inline-flex;
   align-items: center;
   gap: $space-1;
-  // Área táctil cómoda sin agrandar la tarjeta
+  // Comfortable touch target without growing the card
   min-height: 32px;
   margin-top: $space-2;
   font-size: $text-sm;
@@ -27,7 +28,7 @@
   color: $select;
   text-underline-offset: 3px;
 
-  &:hover {
+  @include hover {
     text-decoration-thickness: 2px;
   }
 }

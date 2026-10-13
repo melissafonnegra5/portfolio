@@ -7,9 +7,9 @@ import styles from './Inspector.module.scss';
 const SIDES = ['top', 'right', 'bottom', 'left'];
 
 /**
- * Modo inspección: como Dev Mode en Figma. Al pasar el mouse o navegar con
- * Tab sobre un componente (cualquier elemento con data-component) dibuja su
- * caja, sus paddings y su nombre dentro del Atomic Design del sitio.
+ * Inspect mode, like Figma's Dev Mode: hovering or tabbing onto a component
+ * (any element with data-component) draws its box, paddings and its name
+ * in the site's Atomic Design.
  */
 /** @param {{ label: string, message: string }} props */
 export default function Inspector({ label, message }) {

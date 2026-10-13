@@ -38,8 +38,7 @@
   }
 }
 
-// Notas de FigJam: cada una pegada con un ángulo distinto, y se enderezan
-// cuando las tocas
+// FigJam notes, each stuck at a different angle; they straighten on hover
 .fact {
   transform: rotate(var(--tilt, 0deg));
   transition: transform $duration $ease-out;
@@ -49,7 +48,7 @@
   &:nth-child(3) { --tilt: 1deg; }
   &:nth-child(4) { --tilt: -1.5deg; }
 
-  &:hover {
+  @include hover {
     transform: rotate(0) translateY(-3px);
   }
 

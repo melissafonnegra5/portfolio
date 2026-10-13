@@ -1,6 +1,6 @@
 /**
- * Plantilla de las secciones de contenido: contenedor, título h2 enlazado
- * con aria-labelledby y la entradilla opcional.
+ * Content section template: container, h2 title wired to aria-labelledby
+ * and an optional lead paragraph.
  * @param {{
  *   id: string,
  *   title: string,

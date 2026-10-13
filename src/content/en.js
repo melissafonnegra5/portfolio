@@ -49,6 +49,7 @@ const en = {
     logo: 'Melissa Fonnegra, back to top',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    dark: 'Dark mode',
     contrast: 'High contrast',
     inspect: 'Inspect',
     inspectOn:
@@ -98,7 +99,7 @@ const en = {
       },
       {
         term: 'Languages',
-        detail: 'Spanish (native). Basic English, which I’m actively improving to communicate better.',
+        detail: 'Spanish (native). Intermediate English for reading and writing; I’m currently improving my speaking to communicate better.',
       },
     ],
   },
@@ -130,7 +131,7 @@ const en = {
       },
       {
         title: 'Fast learner',
-        text: 'I learn quickly and always look to grow. Right now, for example, I’m improving my English.',
+        text: 'I learn quickly and always look to grow. Right now, for example, I’m improving my spoken English.',
       },
     ],
   },
@@ -149,7 +150,6 @@ const en = {
           'Atomic Design',
           'Figma (Handoff / Dev Mode)',
           'Responsive design',
-          'Pixel-perfect',
         ],
       },
       {
@@ -160,7 +160,6 @@ const en = {
           'Next.js',
           'jQuery',
           'REST APIs',
-          'GraphQL',
           'Modular reactive components',
         ],
       },
@@ -170,20 +169,20 @@ const en = {
           'Drupal 8, 9 & 10',
           'Decoupled Drupal / Headless CMS',
           'Basic PHP',
+          'Basic SQL',
           'AI-assisted development',
         ],
       },
       {
-        name: 'Quality, analytics & workflow',
+        name: 'SEO, quality & analytics',
         skills: [
-          'WCAG accessibility / a11y',
           'Technical SEO',
+          'WCAG accessibility / a11y',
           'Tagging plans',
           'Digital analytics',
           'Git',
           'Bitbucket',
           'DDEV',
-          'Docker (local)',
         ],
       },
     ],
@@ -223,7 +222,8 @@ const en = {
           'My portfolio, designed and built by me with Next.js, SASS and Atomic Design. Bilingual, accessible and SEO-ready. Turn on “Inspect” to see how each component is built.',
         tags: ['Next.js', 'React', 'SASS', 'Atomic Design', 'DDEV', 'Vercel'],
         github: 'https://github.com/melissafonnegra5/portfolio',
-        demo: 'https://melissafonnegra.vercel.app/en',
+        demo: null,
+        status: null,
       },
       {
         slug: 'retazos-negros',
@@ -233,13 +233,8 @@ const en = {
         tags: ['Astro', 'i18n', 'SEO', 'JSON-LD', 'RSS'],
         github: null,
         demo: null,
+        status: 'In progress',
       },
-    ],
-    responsibilities: [
-      'I maintain production websites by working directly on their source code.',
-      'I update and publish content and images.',
-      'I build responsive HTML layouts from Figma designs.',
-      'I develop features such as filters, breadcrumbs and simulators.',
     ],
     stack: ['JavaScript ES6+', 'React', 'Next.js', 'HTML / CSS', 'Bootstrap 5', 'PHP', 'Drupal CMS'],
     sectors: [
@@ -283,7 +278,7 @@ const en = {
         kind: 'work',
         role: 'Frontend Developer',
         place: 'Dentsu, Medellín',
-        period: 'June 2020 – present',
+        period: 'March 2021 – present',
         summary:
           'I build, lay out and maintain corporate websites, web apps and promotional landing pages for leading brands, with high technical and visual standards.',
         highlights: [
@@ -295,6 +290,16 @@ const en = {
           'AI-assisted development to build layouts, refactor and fix issues faster.',
           'Local environments with DDEV, Git and Bitbucket, plus ongoing production support.',
         ],
+      },
+      {
+        id: 'dentsu-aprendiz',
+        kind: 'work',
+        role: 'Development Apprentice',
+        place: 'Dentsu, Medellín',
+        period: 'June – December 2020',
+        summary:
+          'I uploaded website content, managed web applications and built landing pages with HTML, SASS and Bootstrap.',
+        highlights: [],
       },
       {
         id: 'poli',

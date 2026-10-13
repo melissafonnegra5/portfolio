@@ -17,7 +17,12 @@ export default async function Home({ params }) {
 
   return (
     <>
-      <Navbar links={t.nav} ids={ids} ui={t.ui} />
+      <Navbar
+        links={t.nav}
+        ids={ids}
+        ui={t.ui}
+        targetIds={dictionaries[t.ui.switchLang.lang].ids}
+      />
       <main id={ids.content} tabIndex={-1}>
         <Hero
           id={ids.home}

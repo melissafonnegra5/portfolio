@@ -15,7 +15,7 @@ export default function TimelineItem({ item, kindLabel }) {
       className={`${styles.item} ${isWork ? styles.work : ''}`}
       data-component="molecules/TimelineItem"
     >
-      <span className={styles.marker} aria-hidden="true" />
+      <span className={styles.marker} aria-hidden="true" data-marker />
       <p className={styles.period}>
         <span className="sr-only">{kindLabel}, </span>
         {item.period}

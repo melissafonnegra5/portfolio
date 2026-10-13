@@ -47,8 +47,11 @@
     transition: transform $duration $ease-out;
   }
 
-  &:hover,
   &[aria-current='true'] {
+    color: $ink;
+  }
+
+  @include hover {
     color: $ink;
   }
 

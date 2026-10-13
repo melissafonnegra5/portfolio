@@ -7,17 +7,20 @@ import styles from './ProjectCard.module.scss';
 /**
  * @param {{
  *   project: { slug: string, title: string, description: string,
- *     tags: string[], github: string | null, demo: string | null },
+ *     tags: string[], github: string | null, demo: string | null, status: string | null },
  *   labels: { site: string, siteSr: string, code: string, codeSr: string, tags: string },
  * }} props
  */
 export default function ProjectCard({ project, labels }) {
-  const { slug, title, description, tags, github, demo } = project;
+  const { slug, title, description, tags, github, demo, status } = project;
 
   return (
     <Frame as="article" name={slug} data-component="molecules/ProjectCard">
       <div className={styles.card}>
-        <h4 className={styles.title}>{title}</h4>
+        <div className={styles.heading}>
+          <h4 className={styles.title}>{title}</h4>
+          {status && <p className={styles.status}>{status}</p>}
+        </div>
         <p className={styles.description}>{description}</p>
         <ul className={styles.tags} aria-label={fill(labels.tags, { title })}>
           {tags.map((tag) => (

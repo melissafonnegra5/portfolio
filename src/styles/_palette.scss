@@ -1,7 +1,7 @@
-// Valores de la paleta. El modo de alto contraste se activa con el botón
-// (data-contrast="more") o, sin JavaScript, con la preferencia del sistema.
+// Palette values. Theme comes from data-theme (light | dark) and contrast
+// from data-contrast (normal | more); globals.scss maps them to these mixins.
 
-@mixin base {
+@mixin light {
   --paper: #ececed;
   --surface: #ffffff;
   --ink: #1d1d21;
@@ -12,6 +12,9 @@
   --redline: #c81e63;
   --redline-soft: rgba(200, 30, 99, 0.12);
   --component: #9747ff;
+  --on-ink: #ffffff;
+  --on-accent: #ffffff;
+  --on-color: #1d1d21;
   --cursor: #14ae5c;
   --cursor-alt: #ff9b3d;
   --sticky: #ffe27a;
@@ -27,9 +30,60 @@
   --night-line: #3a3a42;
   --night-dot: #3d3d46;
   --night-accent: #7fb4f5;
+
+  color-scheme: light;
 }
 
-@mixin high-contrast {
+@mixin dark {
+  --paper: #151518;
+  --surface: #1f1f24;
+  --ink: #ececf1;
+  --ink-muted: #a6a6b3;
+  --line: #34343c;
+  --select: #5b9dff;
+  --select-soft: rgba(91, 157, 255, 0.2);
+  --redline: #ff5c97;
+  --redline-soft: rgba(255, 92, 151, 0.16);
+  --component: #b48cff;
+  --on-ink: #151518;
+  --on-accent: #0b1220;
+  --on-color: #1d1d21;
+  --sticky: #f2d36b;
+  --sticky-green: #9fdcb0;
+  --sticky-pink: #f2b3dc;
+  --sticky-blue: #a9d1f7;
+  --dot: #2c2c33;
+  --clip: #a0a0aa;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --night: #0c0c0e;
+  --night-text: #ffffff;
+  --night-muted: #b9b9c4;
+  --night-line: #2a2a30;
+  --night-dot: #24242a;
+  --night-accent: #7fb4f5;
+
+  color-scheme: dark;
+}
+
+// High contrast keeps the sticky colors saturated (not paler) with a black
+// outline; black text stays above 10:1 on all of them.
+@mixin contrast-shared {
+  --on-color: #000000;
+  --sticky: #ffd60a;
+  --sticky-green: #5fd17a;
+  --sticky-pink: #ff8fd0;
+  --sticky-blue: #74b9ff;
+  --dot: transparent;
+  --shadow: transparent;
+  --night-text: #ffffff;
+  --night-muted: #ffffff;
+  --night-line: #ffffff;
+  --night-dot: transparent;
+  --night-accent: #ffe14d;
+}
+
+@mixin contrast-light {
+  @include contrast-shared;
   --paper: #ffffff;
   --surface: #ffffff;
   --ink: #000000;
@@ -40,19 +94,26 @@
   --redline: #a3004a;
   --redline-soft: rgba(163, 0, 74, 0.14);
   --component: #5a00c8;
-  // Notas más saturadas (no más pálidas) con borde negro; el texto negro
-  // queda por encima de 10:1 en todas
-  --sticky: #ffd60a;
-  --sticky-green: #5fd17a;
-  --sticky-pink: #ff8fd0;
-  --sticky-blue: #74b9ff;
-  --dot: transparent;
+  --on-ink: #ffffff;
+  --on-accent: #ffffff;
   --clip: #000000;
-  --shadow: transparent;
   --night: #000000;
-  --night-text: #ffffff;
-  --night-muted: #ffffff;
-  --night-line: #ffffff;
-  --night-dot: transparent;
-  --night-accent: #ffe14d;
+}
+
+@mixin contrast-dark {
+  @include contrast-shared;
+  --paper: #000000;
+  --surface: #000000;
+  --ink: #ffffff;
+  --ink-muted: #f0f0f0;
+  --line: #ffffff;
+  --select: #8ab8ff;
+  --select-soft: rgba(138, 184, 255, 0.25);
+  --redline: #ff8ab4;
+  --redline-soft: rgba(255, 138, 180, 0.2);
+  --component: #d0b3ff;
+  --on-ink: #000000;
+  --on-accent: #000000;
+  --clip: #ffffff;
+  --night: #000000;
 }

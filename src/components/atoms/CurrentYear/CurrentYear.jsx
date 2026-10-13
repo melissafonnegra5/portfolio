@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from 'react';
 
-// El año se lee en el navegador; en el prerender se usa el del último build
+// The year is read in the browser; the prerender uses the build year
 const subscribe = () => () => {};
 const getYear = () => new Date().getFullYear();
 const getServerYear = () => 2026;

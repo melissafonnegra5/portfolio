@@ -1,8 +1,8 @@
 import styles from './Frame.module.scss';
 
 /**
- * Un "frame" de Figma: nombre encima, contenido y, al pasar el mouse o
- * enfocar algo dentro, el recuadro de selección con sus cuatro manijas.
+ * A Figma "frame": name on top, content, and the selection box with its
+ * four handles on hover or when something inside has focus.
  * @param {{
  *   name?: string,
  *   as?: React.ElementType,

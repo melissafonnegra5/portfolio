@@ -1,9 +1,8 @@
 import styles from './Cursor.module.scss';
 
 /**
- * Cursor de un colaborador, como en un archivo de Figma con varias personas.
- * Es decorativo: la flecha queda en el origen del elemento, así que quien lo
- * use solo tiene que posicionarlo.
+ * A collaborator's cursor, like in a shared Figma file. Decorative: the
+ * arrow tip is the element's origin, so callers only need to position it.
  * @param {{
  *   name: string,
  *   color?: 'green' | 'orange',

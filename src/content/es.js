@@ -1,4 +1,4 @@
-/** Textos del sitio en español. La forma de este objeto es la misma en en.js. */
+/** Site copy in Spanish. en.js has the same shape. */
 const es = {
   lang: 'es',
   htmlLang: 'es-CO',
@@ -49,6 +49,7 @@ const es = {
     logo: 'Melissa Fonnegra, ir al inicio',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
+    dark: 'Modo oscuro',
     contrast: 'Alto contraste',
     inspect: 'Inspeccionar',
     inspectOn:
@@ -98,7 +99,7 @@ const es = {
       },
       {
         term: 'Idiomas',
-        detail: 'Español nativo. Inglés básico, que estoy mejorando para comunicarme cada vez mejor.',
+        detail: 'Español nativo. Inglés intermedio en lectura y escritura; en conversación estoy mejorando para comunicarme cada vez mejor.',
       },
     ],
   },
@@ -130,7 +131,7 @@ const es = {
       },
       {
         title: 'Aprendizaje rápido',
-        text: 'Aprendo rápido y busco progresar siempre. Hoy, por ejemplo, estoy mejorando mi inglés.',
+        text: 'Aprendo rápido y busco progresar siempre. Hoy, por ejemplo, estoy mejorando mi inglés hablado.',
       },
     ],
   },
@@ -149,7 +150,6 @@ const es = {
           'Atomic Design',
           'Figma (Handoff / Dev Mode)',
           'Responsive Design',
-          'Pixel-Perfect',
         ],
       },
       {
@@ -160,7 +160,6 @@ const es = {
           'Next.js',
           'jQuery',
           'APIs REST',
-          'GraphQL',
           'Componentes modulares reactivos',
         ],
       },
@@ -170,20 +169,20 @@ const es = {
           'Drupal 8, 9 y 10',
           'Drupal desacoplado / Headless CMS',
           'PHP básico',
+          'SQL básico',
           'Desarrollo asistido por IA',
         ],
       },
       {
-        name: 'Calidad, analítica y flujo',
+        name: 'SEO, calidad y analítica',
         skills: [
-          'Accesibilidad WCAG / a11y',
           'SEO técnico',
+          'Accesibilidad WCAG / a11y',
           'Plan de taggeo',
           'Analítica digital',
           'Git',
           'Bitbucket',
           'DDEV',
-          'Docker (local)',
         ],
       },
     ],
@@ -223,7 +222,8 @@ const es = {
           'Mi portafolio, diseñado y desarrollado por mí con Next.js, SASS y Atomic Design. Bilingüe, accesible y con SEO técnico. Con el modo “Inspeccionar” puedes ver cómo está construido cada componente.',
         tags: ['Next.js', 'React', 'SASS', 'Atomic Design', 'DDEV', 'Vercel'],
         github: 'https://github.com/melissafonnegra5/portfolio',
-        demo: 'https://melissafonnegra.vercel.app',
+        demo: null,
+        status: null,
       },
       {
         slug: 'retazos-negros',
@@ -233,13 +233,8 @@ const es = {
         tags: ['Astro', 'i18n', 'SEO', 'JSON-LD', 'RSS'],
         github: null,
         demo: null,
+        status: 'En construcción',
       },
-    ],
-    responsibilities: [
-      'Mantengo sitios en producción interviniendo directamente su código fuente.',
-      'Actualizo y publico contenidos e imágenes.',
-      'Maqueto en HTML responsivo a partir de los diseños en Figma.',
-      'Programo funcionalidades como filtros, migas de pan y simuladores.',
     ],
     stack: ['JavaScript ES6+', 'React', 'Next.js', 'HTML / CSS', 'Bootstrap 5', 'PHP', 'Drupal CMS'],
     sectors: [
@@ -283,7 +278,7 @@ const es = {
         kind: 'work',
         role: 'Frontend Developer',
         place: 'Dentsu, Medellín',
-        period: 'Junio 2020 – hoy',
+        period: 'Marzo 2021 – hoy',
         summary:
           'Construyo, maqueto y mantengo portales corporativos, aplicaciones web y landing pages promocionales para marcas líderes, con alta exigencia técnica y visual.',
         highlights: [
@@ -295,6 +290,16 @@ const es = {
           'Desarrollo asistido por IA para maquetar, refactorizar y resolver incidencias más rápido.',
           'Entornos locales con DDEV, Git y Bitbucket, y soporte continuo a producción.',
         ],
+      },
+      {
+        id: 'dentsu-aprendiz',
+        kind: 'work',
+        role: 'Aprendiz de desarrollo',
+        place: 'Dentsu, Medellín',
+        period: 'Junio – diciembre 2020',
+        summary:
+          'Cargaba contenido en sitios web, administraba aplicativos web y maquetaba landing pages con HTML, SASS y Bootstrap.',
+        highlights: [],
       },
       {
         id: 'poli',

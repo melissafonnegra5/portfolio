@@ -1,4 +1,5 @@
 @use 'tokens' as *;
+@use 'mixins' as *;
 
 .card {
   display: flex;
@@ -6,6 +7,34 @@
   gap: $space-4;
   height: 100%;
   padding: $space-6;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2 $space-3;
+}
+
+// Work-in-progress badge, like a page status in Figma
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: 2px $space-3;
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $ink-muted;
+  border: 1px solid $line;
+  border-radius: 999px;
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $cursor-alt;
+  }
 }
 
 .title {
@@ -43,7 +72,7 @@
   text-decoration-thickness: 1.5px;
   text-underline-offset: 4px;
 
-  &:hover {
+  @include hover {
     color: $select;
   }
 }

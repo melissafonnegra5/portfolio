@@ -42,19 +42,26 @@
   &:nth-last-of-type(1) { bottom: -4px; right: -4px; }
 }
 
+@mixin selected {
+  .body {
+    outline-color: $select;
+  }
+
+  .handle {
+    opacity: 1;
+  }
+
+  .name {
+    color: $select;
+  }
+}
+
 .selectable {
-  &:hover,
   &:focus-within {
-    .body {
-      outline-color: $select;
-    }
+    @include selected;
+  }
 
-    .handle {
-      opacity: 1;
-    }
-
-    .name {
-      color: $select;
-    }
+  @include hover {
+    @include selected;
   }
 }

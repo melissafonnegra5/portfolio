@@ -17,20 +17,13 @@ export default function Projects({ t, id }) {
       </div>
 
       <h3 className={styles.groupTitle}>{t.workTitle}</h3>
-      <div className={styles.work}>
-        <ul className={styles.responsibilities}>
-          {t.responsibilities.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        <ul className={styles.stack} aria-label={t.stackLabel}>
-          {t.stack.map((tech) => (
-            <Tag key={tech} icon={techIcons[tech]}>
-              {tech}
-            </Tag>
-          ))}
-        </ul>
-      </div>
+      <ul className={styles.stack} aria-label={t.stackLabel}>
+        {t.stack.map((tech) => (
+          <Tag key={tech} icon={techIcons[tech]}>
+            {tech}
+          </Tag>
+        ))}
+      </ul>
 
       <BrandExplorer t={t} />
     </Section>

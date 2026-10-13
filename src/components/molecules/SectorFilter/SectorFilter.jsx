@@ -2,7 +2,7 @@ import Cursor from '@/components/atoms/Cursor';
 import styles from './SectorFilter.module.scss';
 
 /**
- * Botones de filtro por sector (controlados por quien lo usa).
+ * Sector filter buttons (controlled by the parent).
  * @param {{
  *   sectors: { key: string, label: string }[],
  *   value: string,
@@ -25,7 +25,7 @@ export default function SectorFilter({ sectors, value, onChange, label, nudge })
           {s.label}
         </button>
       ))}
-      {/* Invitación a probar los filtros */}
+      {/* Invitation to try the filters */}
       {nudge && (
         <span className={styles.nudge}>
           <Cursor name={nudge.name} color="orange" chat={nudge.chat} />

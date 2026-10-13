@@ -4,8 +4,8 @@ import { slug } from '@/lib/slug';
 import styles from './BrandGrid.module.scss';
 
 /**
- * Lista de marcas. Cada tarjeta tiene su nombre de transición, así al
- * filtrar se mueve a su nuevo lugar en vez de aparecer de golpe.
+ * Brand list. Each card has its own view transition name, so filtering
+ * moves it to its new place instead of popping in.
  * @param {{
  *   brands: { name: string, type: string, url?: string }[],
  *   labels: { site: string, siteSr: string },

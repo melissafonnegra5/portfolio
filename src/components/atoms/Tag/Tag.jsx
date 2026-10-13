@@ -1,8 +1,8 @@
 import styles from './Tag.module.scss';
 
 /**
- * Etiqueta de tecnología. Se renderiza como <li>, dentro de una lista.
- * Con `icon` (el trazo SVG de un logo de 24×24) muestra el logo antes del texto.
+ * Technology tag, rendered as an <li> inside a list. With `icon` (the SVG
+ * path of a 24×24 logo) the logo shows before the text.
  * @param {{ icon?: string, children: React.ReactNode }} props
  */
 export default function Tag({ icon, children }) {

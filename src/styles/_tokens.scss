@@ -1,8 +1,7 @@
 // ===== Color =====
-// La paleta sale del lienzo de Figma: papel gris, tinta, el azul de
-// selección y el magenta de las medidas en Dev Mode. Cada color es una
-// variable CSS para que el modo de alto contraste pueda cambiarla
-// (los valores están en _palette.scss).
+// The palette comes from Figma's canvas: gray paper, ink, the selection
+// blue and Dev Mode's measurement magenta. Each color is a CSS variable so
+// the theme and contrast modes can swap it (values in _palette.scss).
 $paper: var(--paper);
 $surface: var(--surface);
 $ink: var(--ink);
@@ -13,7 +12,12 @@ $select-soft: var(--select-soft);
 $redline: var(--redline);
 $redline-soft: var(--redline-soft);
 $component: var(--component);
-// Multijugador y FigJam: el color del cursor de cada colaborador y las notas
+// Text on filled backgrounds: on ink (primary button), on the accent
+// (selection blue, redline) and on bright colors (stickies, cursor labels)
+$on-ink: var(--on-ink);
+$on-accent: var(--on-accent);
+$on-color: var(--on-color);
+// Multiplayer and FigJam: collaborator cursor colors and sticky notes
 $cursor: var(--cursor);
 $cursor-alt: var(--cursor-alt);
 $sticky: var(--sticky);
@@ -23,7 +27,7 @@ $sticky-blue: var(--sticky-blue);
 $dot: var(--dot);
 $clip: var(--clip);
 $shadow: var(--shadow);
-// Pie de página oscuro
+// Dark footer
 $night: var(--night);
 $night-text: var(--night-text);
 $night-muted: var(--night-muted);
@@ -32,9 +36,10 @@ $night-dot: var(--night-dot);
 $night-accent: var(--night-accent);
 
 // ===== Type =====
-// Escala 1.25 (tercera mayor) sobre una base de 17px
+// 1.25 scale (major third) on a 17px base
 $font-sans: var(--font-bricolage), system-ui, sans-serif;
-$font-mono: var(--font-plex-mono), ui-monospace, monospace;
+// System monospace: only used for small labels, not worth a download
+$font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
 
 $text-sm: 0.875rem;
 $text-base: 1.0625rem;
@@ -79,3 +84,4 @@ $duration: 300ms;
 $bp-sm: 600px;
 $bp-md: 820px;
 $bp-lg: 1040px;
+$bp-xl: 1200px;

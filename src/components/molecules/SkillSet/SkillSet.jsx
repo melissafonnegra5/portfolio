@@ -3,8 +3,8 @@ import { slug } from '@/lib/slug';
 import styles from './SkillSet.module.scss';
 
 /**
- * Grupo de habilidades dibujado como un "component set" de Figma:
- * borde punteado morado y el nombre del set encima.
+ * Skill group drawn as a Figma "component set": dashed purple border
+ * with the set name on top.
  * @param {{ set: { name: string, skills: string[] } }} props
  */
 export default function SkillSet({ set }) {

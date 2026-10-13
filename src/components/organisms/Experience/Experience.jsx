@@ -1,3 +1,4 @@
+import Timeline from '@/components/molecules/Timeline';
 import TimelineItem from '@/components/molecules/TimelineItem';
 import Section from '@/components/templates/Section';
 import styles from './Experience.module.scss';
@@ -6,7 +7,7 @@ import styles from './Experience.module.scss';
 export default function Experience({ t, id }) {
   return (
     <Section id={id} title={t.title} lead={t.lead} component="organisms/Experience">
-      <ol className={styles.timeline}>
+      <Timeline className={styles.timeline}>
         {t.items.map((item) => (
           <TimelineItem
             key={item.id}
@@ -14,7 +15,7 @@ export default function Experience({ t, id }) {
             kindLabel={item.kind === 'work' ? t.work : t.study}
           />
         ))}
-      </ol>
+      </Timeline>
     </Section>
   );
 }

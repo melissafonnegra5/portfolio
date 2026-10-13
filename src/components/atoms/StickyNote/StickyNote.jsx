@@ -1,7 +1,7 @@
 import styles from './StickyNote.module.scss';
 
 /**
- * Nota adhesiva de FigJam.
+ * FigJam sticky note.
  * @param {{
  *   color?: 'yellow' | 'green' | 'pink' | 'blue',
  *   as?: React.ElementType,
