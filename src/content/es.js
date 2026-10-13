@@ -27,8 +27,7 @@ const es = {
       'Medellín',
       'Colombia',
     ],
-    ogAlt: 'Melissa Fonnegra Zapata, Ingeniera de Software y Frontend Developer',
-    ogTagline: 'Ingeniera de Software y Frontend Developer. Diseños de Figma convertidos en interfaces accesibles.',
+    ogTagline: 'Ingeniera de Software y Frontend Developer en Dentsu. Convierto diseños de Figma en sitios accesibles.',
     knowsAbout: ['Accesibilidad web (WCAG)', 'SEO técnico'],
   },
 
@@ -270,9 +269,18 @@ const es = {
   experience: {
     title: 'Trayectoria',
     lead: 'Mi trabajo en Dentsu y la formación que me trajo hasta aquí.',
-    work: 'Trabajo',
-    study: 'Formación',
+    workTitle: 'Experiencia laboral',
+    studyTitle: 'Formación',
     items: [
+      {
+        id: 'poli',
+        kind: 'study',
+        role: 'Ingeniería de Software',
+        place: 'Politécnico Grancolombiano',
+        period: '2022 – 2024',
+        summary: 'Pregrado profesional. Graduada.',
+        highlights: [],
+      },
       {
         id: 'dentsu',
         kind: 'work',
@@ -299,15 +307,6 @@ const es = {
         period: 'Junio – diciembre 2020',
         summary:
           'Cargaba contenido en sitios web, administraba aplicativos web y maquetaba landing pages con HTML, SASS y Bootstrap.',
-        highlights: [],
-      },
-      {
-        id: 'poli',
-        kind: 'study',
-        role: 'Ingeniería de Software',
-        place: 'Politécnico Grancolombiano',
-        period: '2022 – 2024',
-        summary: 'Pregrado profesional. Graduada.',
         highlights: [],
       },
       {

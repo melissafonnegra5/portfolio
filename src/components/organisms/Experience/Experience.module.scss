@@ -1,6 +1,24 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
+.groups {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: $space-7 $space-8;
+  align-items: start;
+
+  @include down($bp-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.groupTitle {
+  font-size: $text-lg;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: $space-5;
+}
+
 .timeline {
   position: relative;
   max-width: 820px;
