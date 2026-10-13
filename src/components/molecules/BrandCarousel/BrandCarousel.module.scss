@@ -1,0 +1,85 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.viewport {
+  overflow: hidden;
+  // Deja ver el borde de la siguiente página: así se nota que se puede deslizar
+  margin-inline: -$gutter-mobile;
+  padding-inline: $gutter-mobile;
+}
+
+.track {
+  display: flex;
+  gap: $space-3;
+  touch-action: pan-y pinch-zoom;
+}
+
+.slide {
+  flex: 0 0 92%;
+  min-width: 0;
+}
+
+.page {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-3;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  margin-top: $space-5;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: $text-md;
+  background: $surface;
+  border: 1.5px solid $ink;
+  border-radius: $radius;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+.dots {
+  display: flex;
+}
+
+// Botón de 32px para que sea fácil de tocar; el punto visible es más pequeño
+.dot {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 44px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    border: 1.5px solid $ink;
+    border-radius: 50%;
+    transition:
+      width $duration-fast,
+      background $duration-fast;
+  }
+
+  &[aria-current='true']::before {
+    width: 24px;
+    background: $select;
+    border-color: $select;
+    border-radius: 5px;
+  }
+}

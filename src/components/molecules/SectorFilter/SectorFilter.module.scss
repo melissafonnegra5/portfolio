@@ -1,0 +1,66 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin-bottom: $space-6;
+}
+
+// Ancla del cursor "Tú": la flecha apunta al último filtro
+.nudge {
+  position: relative;
+  width: 150px;
+  height: 44px;
+  margin-left: -6px;
+
+  // La punta toca el borde del último botón y la burbuja no tapa las tarjetas
+  > span {
+    top: 10px;
+    left: -2px;
+  }
+
+  @include down($bp-sm) {
+    display: none;
+  }
+}
+
+@keyframes nudge-in {
+  from { opacity: 0; transform: translate(40px, 30px); }
+  to { opacity: 1; transform: none; }
+}
+
+@include motion {
+  @supports (animation-timeline: view()) {
+    .nudge > span {
+      animation: nudge-in linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 35%;
+    }
+  }
+}
+
+.filter {
+  min-height: 44px;
+  padding: $space-2 $space-4;
+  font-size: $text-sm;
+  font-weight: 600;
+  background: transparent;
+  border: 1.5px solid $line;
+  border-radius: $radius;
+  cursor: pointer;
+  transition:
+    border-color $duration-fast,
+    background $duration-fast;
+
+  &:hover {
+    border-color: $ink;
+  }
+
+  &[aria-pressed='true'] {
+    background: $ink;
+    border-color: $ink;
+    color: $surface;
+  }
+}

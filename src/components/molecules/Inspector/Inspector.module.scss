@@ -1,0 +1,83 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  min-height: 40px;
+  padding: $space-2 $space-4;
+  font-size: $text-sm;
+  font-weight: 600;
+  background: transparent;
+  border: 1.5px solid $ink;
+  border-radius: $radius;
+  cursor: pointer;
+  transition:
+    background $duration-fast,
+    color $duration-fast;
+
+  &:hover {
+    background: $surface;
+  }
+
+  &[aria-pressed='true'] {
+    background: $redline;
+    border-color: $redline;
+    color: $surface;
+  }
+
+  // Sin mouse no hay qué inspeccionar al pasar por encima
+  @media (hover: none), (max-width: ($bp-md - 1px)) {
+    display: none;
+  }
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1500;
+  pointer-events: none;
+  outline: 1.5px solid $redline;
+  font-family: $font-mono;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.padding {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  background: $redline-soft;
+
+  &.top { top: 0; left: 0; right: 0; height: var(--size); }
+  &.bottom { bottom: 0; left: 0; right: 0; height: var(--size); }
+  &.left { top: 0; bottom: 0; left: 0; width: var(--size); }
+  &.right { top: 0; bottom: 0; right: 0; width: var(--size); }
+}
+
+.value {
+  padding: 2px 4px;
+  color: $surface;
+  background: $redline;
+  border-radius: $radius;
+}
+
+.label,
+.size {
+  position: absolute;
+  left: -1.5px;
+  padding: 4px 6px;
+  color: $surface;
+  background: $redline;
+  white-space: nowrap;
+}
+
+.label {
+  bottom: 100%;
+  margin-bottom: 4px;
+}
+
+.size {
+  top: 100%;
+  margin-top: 4px;
+}

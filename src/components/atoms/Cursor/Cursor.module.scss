@@ -1,0 +1,79 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.cursor {
+  --cursor-color: #{$cursor};
+
+  position: absolute;
+  z-index: 3;
+  // Tamaño explícito: sin él, el max-width global de los svg colapsa la flecha
+  width: 20px;
+  height: 25px;
+  pointer-events: none;
+
+  // Son decoración: en alto contraste se quitan para no distraer
+  @include contrast {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    width: 20px;
+    height: 25px;
+    // La punta de la flecha queda justo en el origen
+    transform: translate(-1px, -1px);
+    fill: var(--cursor-color);
+    stroke: $surface;
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+  }
+}
+
+.orange {
+  --cursor-color: #{$cursor-alt};
+}
+
+.label {
+  position: absolute;
+  top: 26px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 2px 7px 3px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: $ink;
+  background: var(--cursor-color);
+  border-radius: 0 4px 4px 4px;
+}
+
+// Con chat, la etiqueta crece como el cursor chat de Figma
+.chat {
+  font-size: 15px;
+  font-weight: 500;
+  padding-bottom: 2px;
+}
+
+.label:has(.chat) {
+  top: 18px;
+  left: 18px;
+  padding: 4px 12px 6px;
+  border-radius: 0 16px 16px 16px;
+
+  .name {
+    font-size: 11px;
+  }
+}
+
+// Etiqueta a la izquierda, cuando el cursor está cerca del borde derecho
+.flip .label {
+  left: auto;
+  right: 4px;
+  align-items: flex-end;
+  border-radius: 4px 0 4px 4px;
+}

@@ -1,0 +1,162 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+@use 'palette';
+
+// ===== Paleta =====
+:root {
+  @include palette.base;
+}
+
+html[data-contrast='more'] {
+  @include palette.high-contrast;
+}
+
+@media (prefers-contrast: more) {
+  html:not([data-contrast]) {
+    @include palette.high-contrast;
+  }
+}
+
+// ===== Reset =====
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-padding-top: $nav-height + 24px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  @include motion {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $text-base;
+  line-height: $leading-body;
+  color: $ink;
+  background: $paper;
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+  overflow-x: clip;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: $leading-snug;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: $select-soft;
+}
+
+// ===== Accesibilidad =====
+:focus-visible {
+  @include focus-ring;
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  top: $space-3;
+  left: $space-3;
+  z-index: 2000;
+  padding: $space-3 $space-5;
+  background: $ink;
+  color: $surface;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: $radius;
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+  }
+}
+
+.sr-only {
+  @include visually-hidden;
+}
+
+// ===== Layout =====
+.container {
+  @include container;
+}
+
+.section {
+  padding-block: $space-8;
+
+  @include down($bp-md) {
+    padding-block: $space-7;
+  }
+}
+
+.section-title {
+  font-size: $text-2xl;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: $space-4;
+}
+
+.section-lead {
+  max-width: $measure;
+  color: $ink-muted;
+  font-size: $text-md;
+  margin-bottom: $space-7;
+
+  @include down($bp-md) {
+    margin-bottom: $space-6;
+  }
+}
+
+// ===== Modo inspección =====
+html[data-inspect='on'] body {
+  cursor: crosshair;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

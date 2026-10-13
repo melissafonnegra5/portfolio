@@ -1,0 +1,35 @@
+import styles from './TimelineItem.module.scss';
+
+/**
+ * @param {{
+ *   item: { kind: 'work' | 'study', role: string, place: string, period: string,
+ *     summary: string, highlights: string[] },
+ *   kindLabel: string,
+ * }} props
+ */
+export default function TimelineItem({ item, kindLabel }) {
+  const isWork = item.kind === 'work';
+
+  return (
+    <li
+      className={`${styles.item} ${isWork ? styles.work : ''}`}
+      data-component="molecules/TimelineItem"
+    >
+      <span className={styles.marker} aria-hidden="true" />
+      <p className={styles.period}>
+        <span className="sr-only">{kindLabel}, </span>
+        {item.period}
+      </p>
+      <h3 className={styles.role}>{item.role}</h3>
+      <p className={styles.place}>{item.place}</p>
+      <p className={styles.summary}>{item.summary}</p>
+      {item.highlights.length > 0 && (
+        <ul className={styles.highlights}>
+          {item.highlights.map((h) => (
+            <li key={h}>{h}</li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}

@@ -1,0 +1,60 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.name {
+  font-size: $text-sm;
+  color: $ink-muted;
+  line-height: 1;
+}
+
+.body {
+  position: relative;
+  flex: 1;
+  background: $surface;
+  border-radius: $radius;
+  outline: 1.5px solid transparent;
+  transition: outline-color $duration-fast;
+
+  @include contrast {
+    outline-color: $ink;
+  }
+}
+
+.handle {
+  position: absolute;
+  width: $handle;
+  height: $handle;
+  background: $surface;
+  border: 1.5px solid $select;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $duration-fast;
+
+  &:nth-last-of-type(4) { top: -4px; left: -4px; }
+  &:nth-last-of-type(3) { top: -4px; right: -4px; }
+  &:nth-last-of-type(2) { bottom: -4px; left: -4px; }
+  &:nth-last-of-type(1) { bottom: -4px; right: -4px; }
+}
+
+.selectable {
+  &:hover,
+  &:focus-within {
+    .body {
+      outline-color: $select;
+    }
+
+    .handle {
+      opacity: 1;
+    }
+
+    .name {
+      color: $select;
+    }
+  }
+}

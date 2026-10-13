@@ -1,0 +1,23 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $space-6 $space-5;
+
+  @include down($bp-lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include down($bp-sm) {
+    grid-template-columns: 1fr;
+    gap: $space-5;
+  }
+}
+
+.values {
+  margin-top: $space-6;
+  font-size: $text-md;
+  font-weight: 600;
+}

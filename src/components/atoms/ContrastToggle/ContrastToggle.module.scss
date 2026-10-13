@@ -1,0 +1,35 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  min-width: 40px;
+  min-height: 40px;
+  padding: $space-2 $space-3;
+  font-size: $text-sm;
+  font-weight: 600;
+  background: transparent;
+  border: 1.5px solid $ink;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: background $duration-fast;
+
+  &:hover {
+    background: $surface;
+  }
+
+  &[aria-pressed='true'] {
+    background: $ink;
+    color: $paper;
+  }
+}
+
+// En pantallas medianas queda solo el ícono; el texto sigue para lectores
+.label {
+  @include down($bp-lg) {
+    @include visually-hidden;
+  }
+}

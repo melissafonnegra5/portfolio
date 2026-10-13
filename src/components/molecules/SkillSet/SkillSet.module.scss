@@ -1,0 +1,31 @@
+@use 'tokens' as *;
+
+.set {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $text-base;
+  font-weight: 600;
+
+  svg {
+    color: $component;
+    flex-shrink: 0;
+  }
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: $space-3;
+  flex: 1;
+  padding: $space-5;
+  border: 1.5px dashed $component;
+  border-radius: $radius * 2;
+}

@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio · Melissa Fonnegra Zapata
 
-## Getting Started
+Portafolio bilingüe (español en `/`, inglés en `/en`) hecho con Next.js 16, React 19, JavaScript ES6+ y SASS con Atomic Design.
 
-First, run the development server:
+Publicado en https://melissafonnegra.vercel.app
+
+## Desarrollo local
+
+El proyecto corre en DDEV:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ddev start          # https://portfolio.ddev.site
+ddev npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Comando                 | Qué hace                                                      |
+| ----------------------- | ------------------------------------------------------------- |
+| `npm run dev`           | Servidor de desarrollo (DDEV ya lo arranca solo)              |
+| `npm run build`         | Build de producción                                           |
+| `npm run lint`          | ESLint                                                        |
+| `npm run check:content` | Verifica que `es` y `en` tengan los mismos textos y listas    |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── [lang]/            layout, página, imágenes OG e íconos por idioma
+│   ├── global-not-found.jsx
+│   ├── manifest.js · robots.js · sitemap.js
+├── components/
+│   ├── atoms/             piezas mínimas: Button, Tag, Cursor, StickyNote…
+│   ├── molecules/         combinaciones: ProjectCard, BrandCarousel, SectorFilter…
+│   ├── organisms/         secciones completas: Hero, About, Projects, Navbar…
+│   └── templates/         estructura compartida: Section
+├── content/               todos los textos del sitio (es.js, en.js)
+├── hooks/                 hooks de React (useMediaQuery)
+├── lib/                   utilidades sin React (site, slug, fill, techIcons)
+└── styles/                tokens, paleta, mixins y estilos globales
+```
 
-## Learn More
+Cada componente vive en su propia carpeta:
 
-To learn more about Next.js, take a look at the following resources:
+```
+components/molecules/ProjectCard/
+├── ProjectCard.jsx
+├── ProjectCard.module.scss
+└── index.js               export { default } from './ProjectCard';
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+y se importa por su carpeta: `import ProjectCard from '@/components/molecules/ProjectCard';`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Convenciones
 
-## Deploy on Vercel
+- **Textos:** nada de texto suelto en los componentes. Todo va en `src/content/es.js` y `src/content/en.js` con la misma forma; `npm run check:content` avisa si algo falta en un idioma.
+- **Estilos:** cada módulo SCSS empieza con `@use 'tokens' as *;` (y `@use 'mixins' as *;` si lo necesita). Los colores son variables CSS definidas en `styles/_palette.scss`, así el modo de alto contraste puede cambiarlas; para reglas extra en ese modo está el mixin `contrast`.
+- **Movimiento:** toda animación va dentro del mixin `motion`, para respetar "reducir movimiento".
+- **Servidor primero:** los componentes son de servidor salvo que necesiten estado o eventos (`'use client'`). En Proyectos, solo `BrandExplorer` (filtros y carrusel) corre en el navegador.
+- **Modo inspección:** cada componente lleva `data-component="nivel/Nombre"`, que es lo que muestra el botón "Inspeccionar".
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Agregar un idioma
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Copiar `src/content/en.js` a `src/content/<lang>.js` y traducirlo.
+2. Registrarlo en `src/content/index.js` y darle su `path` (por ejemplo `/pt`).
+3. Hoy el botón de idioma (`ui.switchLang`) lleva al otro idioma; con tres o más, `LangSwitch` debería pasar a ser una lista.
+4. Correr `npm run check:content`.

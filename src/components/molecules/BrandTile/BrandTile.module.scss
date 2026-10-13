@@ -1,0 +1,33 @@
+@use 'tokens' as *;
+
+.tile {
+  padding: $space-4 $space-5;
+  height: 100%;
+}
+
+.name {
+  font-size: $text-base;
+  font-weight: 700;
+}
+
+.type {
+  font-size: $text-sm;
+  color: $ink-muted;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  // Área táctil cómoda sin agrandar la tarjeta
+  min-height: 32px;
+  margin-top: $space-2;
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $select;
+  text-underline-offset: 3px;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+}

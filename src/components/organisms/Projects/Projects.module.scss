@@ -1,0 +1,60 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.groupTitle {
+  font-size: $text-lg;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: $space-5;
+}
+
+.personal {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-6;
+  margin-bottom: $space-8;
+
+  @include down($bp-md) {
+    grid-template-columns: 1fr;
+    margin-bottom: $space-7;
+  }
+}
+
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: $space-6 $space-8;
+  margin-bottom: $space-7;
+
+  @include down($bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.responsibilities {
+  display: grid;
+  gap: $space-3;
+  max-width: $measure;
+
+  li {
+    position: relative;
+    padding-left: $space-5;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 8px;
+      height: 1.5px;
+      background: $select;
+    }
+  }
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: $space-2;
+}

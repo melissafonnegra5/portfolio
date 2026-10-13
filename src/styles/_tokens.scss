@@ -1,0 +1,81 @@
+// ===== Color =====
+// La paleta sale del lienzo de Figma: papel gris, tinta, el azul de
+// selección y el magenta de las medidas en Dev Mode. Cada color es una
+// variable CSS para que el modo de alto contraste pueda cambiarla
+// (los valores están en _palette.scss).
+$paper: var(--paper);
+$surface: var(--surface);
+$ink: var(--ink);
+$ink-muted: var(--ink-muted);
+$line: var(--line);
+$select: var(--select);
+$select-soft: var(--select-soft);
+$redline: var(--redline);
+$redline-soft: var(--redline-soft);
+$component: var(--component);
+// Multijugador y FigJam: el color del cursor de cada colaborador y las notas
+$cursor: var(--cursor);
+$cursor-alt: var(--cursor-alt);
+$sticky: var(--sticky);
+$sticky-green: var(--sticky-green);
+$sticky-pink: var(--sticky-pink);
+$sticky-blue: var(--sticky-blue);
+$dot: var(--dot);
+$clip: var(--clip);
+$shadow: var(--shadow);
+// Pie de página oscuro
+$night: var(--night);
+$night-text: var(--night-text);
+$night-muted: var(--night-muted);
+$night-line: var(--night-line);
+$night-dot: var(--night-dot);
+$night-accent: var(--night-accent);
+
+// ===== Type =====
+// Escala 1.25 (tercera mayor) sobre una base de 17px
+$font-sans: var(--font-bricolage), system-ui, sans-serif;
+$font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+$text-sm: 0.875rem;
+$text-base: 1.0625rem;
+$text-md: 1.25rem;
+$text-lg: 1.5625rem;
+$text-xl: 1.953rem;
+$text-2xl: clamp(2.2rem, 4vw, 3.052rem);
+$text-hero: clamp(3rem, 8.5vw, 6.4rem);
+
+$leading-tight: 0.95;
+$leading-snug: 1.2;
+$leading-body: 1.6;
+
+$measure: 62ch;
+
+// ===== Space & layout =====
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.5rem;
+$space-6: 2rem;
+$space-7: 3rem;
+$space-8: 4rem;
+$space-9: 6rem;
+$space-10: 8rem;
+
+$container: 1200px;
+$gutter: 1.5rem;
+$gutter-mobile: 1rem;
+$nav-height: 64px;
+
+$radius: 2px;
+$handle: 7px;
+
+// ===== Motion =====
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$duration-fast: 150ms;
+$duration: 300ms;
+
+// ===== Breakpoints =====
+$bp-sm: 600px;
+$bp-md: 820px;
+$bp-lg: 1040px;

@@ -1,0 +1,24 @@
+@use 'tokens' as *;
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  min-height: 44px;
+  font-weight: 800;
+  font-size: $text-md;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $select;
+  border: 1.5px solid $select;
+}

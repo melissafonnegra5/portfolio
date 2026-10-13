@@ -1,0 +1,102 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.item {
+  position: relative;
+  padding-left: $space-7;
+  padding-bottom: $space-6;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.marker {
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 13px;
+  height: 13px;
+  background: $paper;
+  border: 1.5px solid $ink;
+  transform: translateX(-6px);
+}
+
+.work .marker {
+  background: $select;
+  border-color: $select;
+}
+
+// Cada recuadro se llena cuando el relleno del riel lo alcanza (mitad de
+// pantalla). Sin soporte o con movimiento reducido, se queda como arriba.
+@keyframes check {
+  from {
+    background: $paper;
+    border-color: $ink;
+  }
+
+  to {
+    background: $select;
+    border-color: $select;
+  }
+}
+
+@include motion {
+  @supports (animation-timeline: view()) {
+    .marker {
+      animation: check linear both;
+      animation-timeline: view();
+      animation-range: cover calc(50vh - 6px) cover calc(50vh + 6px);
+    }
+  }
+}
+
+.period {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $ink-muted;
+}
+
+.role {
+  font-size: $text-md;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: $space-1;
+}
+
+.work .role {
+  font-size: $text-xl;
+  letter-spacing: -0.02em;
+}
+
+.place {
+  font-weight: 500;
+}
+
+.summary {
+  margin-top: $space-3;
+  color: $ink-muted;
+  max-width: $measure;
+}
+
+.highlights {
+  display: grid;
+  gap: $space-3;
+  margin-top: $space-5;
+  max-width: $measure;
+
+  li {
+    position: relative;
+    padding-left: $space-5;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 8px;
+      height: 1.5px;
+      background: $select;
+    }
+  }
+}

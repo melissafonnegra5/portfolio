@@ -1,0 +1,46 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.timeline {
+  position: relative;
+  max-width: 820px;
+
+  // Riel de la línea de tiempo
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    bottom: 0;
+    width: 1.5px;
+  }
+
+  &::before {
+    background: $line;
+  }
+
+  // Progreso que se llena con el scroll (scroll-driven animation, sin JS)
+  &::after {
+    background: $select;
+    transform-origin: top;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes fill {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@include motion {
+  @supports (animation-timeline: view()) {
+    .timeline::after {
+      animation: fill linear both;
+      animation-timeline: view();
+      // El frente del relleno va siempre a mitad de pantalla: empieza cuando
+      // el inicio de la lista cruza el centro y termina cuando lo cruza el final
+      animation-range: cover 50vh cover calc(100% - 50vh);
+    }
+  }
+}

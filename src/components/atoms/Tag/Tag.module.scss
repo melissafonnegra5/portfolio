@@ -1,0 +1,20 @@
+@use 'tokens' as *;
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-3;
+  font-size: $text-sm;
+  font-weight: 500;
+  line-height: 1.5;
+  background: $surface;
+  border: 1px solid $line;
+  border-radius: $radius;
+}
+
+// Logo en el color del texto: no suma colores y sigue al alto contraste
+.icon {
+  flex-shrink: 0;
+  fill: currentColor;
+}

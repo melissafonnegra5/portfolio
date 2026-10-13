@@ -1,0 +1,79 @@
+@use 'tokens' as *;
+
+@mixin up($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin down($bp) {
+  @media (max-width: ($bp - 1px)) {
+    @content;
+  }
+}
+
+@mixin motion {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $container;
+  margin-inline: auto;
+  padding-inline: $gutter;
+
+  @include down($bp-sm) {
+    padding-inline: $gutter-mobile;
+  }
+}
+
+// Las cuatro manijas de una selección de Figma. El elemento necesita
+// position: relative y contener <span class="handle"> ×4.
+@mixin selection-handles($color: $select) {
+  .handle {
+    position: absolute;
+    width: $handle;
+    height: $handle;
+    background: $surface;
+    border: 1.5px solid $color;
+    pointer-events: none;
+
+    &:nth-of-type(1) { top: -4px; left: -4px; }
+    &:nth-of-type(2) { top: -4px; right: -4px; }
+    &:nth-of-type(3) { bottom: -4px; left: -4px; }
+    &:nth-of-type(4) { bottom: -4px; right: -4px; }
+  }
+}
+
+// Oculto a la vista pero disponible para lectores de pantalla
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin focus-ring {
+  outline: 2px solid $select;
+  outline-offset: 3px;
+}
+
+// Reglas extra para el modo de alto contraste (botón o preferencia del sistema)
+@mixin contrast {
+  :global(html[data-contrast='more']) & {
+    @content;
+  }
+
+  @media (prefers-contrast: more) {
+    :global(html:not([data-contrast])) & {
+      @content;
+    }
+  }
+}

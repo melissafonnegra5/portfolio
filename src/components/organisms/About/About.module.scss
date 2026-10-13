@@ -1,0 +1,63 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: $space-8;
+  align-items: start;
+  margin-top: $space-5;
+
+  @include down($bp-lg) {
+    grid-template-columns: 1fr;
+    gap: $space-7;
+  }
+}
+
+.story {
+  max-width: $measure;
+
+  p + p {
+    margin-top: $space-4;
+  }
+
+  p:first-of-type {
+    font-size: $text-md;
+    line-height: 1.5;
+  }
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-5;
+  padding-top: $space-3;
+
+  @include down($bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Notas de FigJam: cada una pegada con un ángulo distinto, y se enderezan
+// cuando las tocas
+.fact {
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform $duration $ease-out;
+
+  &:nth-child(1) { --tilt: -2deg; }
+  &:nth-child(2) { --tilt: 1.5deg; }
+  &:nth-child(3) { --tilt: 1deg; }
+  &:nth-child(4) { --tilt: -1.5deg; }
+
+  &:hover {
+    transform: rotate(0) translateY(-3px);
+  }
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin-top: $space-1;
+  }
+}

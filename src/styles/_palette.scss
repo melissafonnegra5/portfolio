@@ -1,0 +1,58 @@
+// Valores de la paleta. El modo de alto contraste se activa con el botón
+// (data-contrast="more") o, sin JavaScript, con la preferencia del sistema.
+
+@mixin base {
+  --paper: #ececed;
+  --surface: #ffffff;
+  --ink: #1d1d21;
+  --ink-muted: #55555e;
+  --line: #d3d3d8;
+  --select: #0862cc;
+  --select-soft: rgba(8, 98, 204, 0.1);
+  --redline: #c81e63;
+  --redline-soft: rgba(200, 30, 99, 0.12);
+  --component: #9747ff;
+  --cursor: #14ae5c;
+  --cursor-alt: #ff9b3d;
+  --sticky: #ffe27a;
+  --sticky-green: #b8ecc4;
+  --sticky-pink: #ffc8ea;
+  --sticky-blue: #c4e3ff;
+  --dot: #c6c6cc;
+  --clip: #8a8a94;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --night: #1d1d21;
+  --night-text: #ffffff;
+  --night-muted: #c9c9d1;
+  --night-line: #3a3a42;
+  --night-dot: #3d3d46;
+  --night-accent: #7fb4f5;
+}
+
+@mixin high-contrast {
+  --paper: #ffffff;
+  --surface: #ffffff;
+  --ink: #000000;
+  --ink-muted: #1a1a1a;
+  --line: #000000;
+  --select: #0039a6;
+  --select-soft: rgba(0, 57, 166, 0.14);
+  --redline: #a3004a;
+  --redline-soft: rgba(163, 0, 74, 0.14);
+  --component: #5a00c8;
+  // Notas más saturadas (no más pálidas) con borde negro; el texto negro
+  // queda por encima de 10:1 en todas
+  --sticky: #ffd60a;
+  --sticky-green: #5fd17a;
+  --sticky-pink: #ff8fd0;
+  --sticky-blue: #74b9ff;
+  --dot: transparent;
+  --clip: #000000;
+  --shadow: transparent;
+  --night: #000000;
+  --night-text: #ffffff;
+  --night-muted: #ffffff;
+  --night-line: #ffffff;
+  --night-dot: transparent;
+  --night-accent: #ffe14d;
+}

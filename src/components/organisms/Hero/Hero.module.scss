@@ -1,0 +1,308 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+// Contadores animables para las medidas del frame (400 × 500)
+@property --w {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 400;
+}
+
+@property --h {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 500;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: $space-8 $space-8;
+
+  // Cuadrícula de puntos del lienzo de Figma, que se desvanece hacia abajo
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle, $dot 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    background-position: center top;
+    mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    // Con $dot transparente en alto contraste, la cuadrícula desaparece
+  }
+
+  @include down($bp-md) {
+    padding-block: $space-6 $space-7;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  gap: $space-8;
+
+  @include down($bp-md) {
+    grid-template-columns: 1fr;
+    gap: $space-7;
+  }
+}
+
+.name {
+  font-size: $text-hero;
+  font-weight: 800;
+  line-height: $leading-tight;
+  letter-spacing: -0.03em;
+  font-variation-settings: 'wdth' 88;
+  margin-bottom: $space-6;
+}
+
+.line {
+  display: block;
+  padding-bottom: 0.06em;
+}
+
+.lead {
+  max-width: 34ch;
+  font-size: $text-lg;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+  margin-top: $space-6;
+}
+
+.hint {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  max-width: 46ch;
+  margin-top: $space-6;
+  font-size: $text-sm;
+  color: $ink-muted;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 0.2em;
+    color: $redline;
+  }
+
+  // El modo inspección solo existe con mouse y en pantallas medianas o más
+  @media (hover: none), (max-width: ($bp-md - 1px)) {
+    display: none;
+  }
+}
+
+// ===== Foto como frame seleccionado =====
+.stage {
+  position: relative;
+  justify-self: end;
+  width: min(100%, 400px);
+
+  @include down($bp-md) {
+    justify-self: start;
+    width: min(80%, 360px);
+  }
+}
+
+.fileName {
+  display: block;
+  margin-bottom: $space-2;
+  font-size: $text-sm;
+  color: $select;
+  line-height: 1;
+}
+
+.selection {
+  position: relative;
+
+  // El borde de selección va en su propia capa para que la animación
+  // que lo dibuja no recorte las manijas
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    z-index: 1;
+    border: 1.5px solid $select;
+    pointer-events: none;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.handle {
+  position: absolute;
+  z-index: 2;
+  width: $handle + 2px;
+  height: $handle + 2px;
+  background: $surface;
+  border: 1.5px solid $select;
+
+  &:nth-of-type(1) { top: -5px; left: -5px; }
+  &:nth-of-type(2) { top: -5px; right: -5px; }
+  &:nth-of-type(3) { bottom: -5px; left: -5px; }
+  &:nth-of-type(4) { bottom: -5px; right: -5px; }
+}
+
+.dimensions {
+  display: table;
+  margin: $space-3 auto 0;
+  padding: 3px 8px;
+  font-family: $font-mono;
+  font-size: 12px;
+  color: $surface;
+  background: $select;
+  border-radius: $radius;
+}
+
+.w {
+  counter-reset: w var(--w);
+
+  &::after {
+    content: counter(w);
+  }
+}
+
+.h {
+  counter-reset: h var(--h);
+
+  &::after {
+    content: counter(h);
+  }
+}
+
+// ===== Cursor multijugador: es quien hizo la selección =====
+.cursor {
+  top: 100%;
+  left: 100%;
+}
+
+// ===== Nota adhesiva de FigJam =====
+// .stage delante: le gana al position: relative del átomo
+.stage .sticky {
+  position: absolute;
+  bottom: $space-8;
+  left: -$space-8;
+  z-index: 4;
+  width: 210px;
+  transform: rotate(-3deg);
+
+  p + p {
+    margin-top: $space-2;
+  }
+
+  @include down($bp-lg) {
+    left: -$space-6;
+  }
+
+  @include down($bp-md) {
+    left: auto;
+    right: -18%;
+    bottom: $space-7;
+    width: 165px;
+    font-size: $text-sm;
+  }
+}
+
+// ===== Secuencia de carga: un solo momento orquestado =====
+@keyframes draw {
+  from { clip-path: inset(0 100% 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+// El cursor aparece en la esquina superior y arrastra la selección
+@keyframes drag {
+  0% { top: 0; left: 0; opacity: 0; }
+  22% { top: 0; left: 0; opacity: 1; animation-timing-function: $ease-out; }
+  100% { top: 100%; left: 100%; opacity: 1; }
+}
+
+@keyframes stick {
+  from { opacity: 0; transform: translateY(-14px) rotate(2deg) scale(1.05); }
+  to { opacity: 1; transform: rotate(-3deg); }
+}
+
+@keyframes count-w {
+  from { --w: 0; }
+}
+
+@keyframes count-h {
+  from { --h: 0; }
+}
+
+@include motion {
+  .cursor {
+    animation: drag 900ms linear both;
+  }
+
+  .selection::before {
+    animation: draw 700ms $ease-out 200ms both;
+  }
+
+  .sticky {
+    animation: stick 500ms $ease-out 1150ms both;
+  }
+
+  .image {
+    animation: rise 600ms $ease-out 100ms both;
+  }
+
+  .handle {
+    animation: pop 260ms $ease-out both;
+
+    @for $i from 1 through 4 {
+      &:nth-of-type(#{$i}) {
+        animation-delay: 800ms + $i * 60ms;
+      }
+    }
+  }
+
+  .fileName,
+  .dimensions {
+    animation: rise 400ms $ease-out 700ms both;
+  }
+
+  .w {
+    animation: count-w 900ms $ease-out 750ms both;
+  }
+
+  .h {
+    animation: count-h 900ms $ease-out 750ms both;
+  }
+
+  .line {
+    animation: reveal 650ms $ease-out both;
+
+    &:nth-child(1) { animation-delay: 150ms; }
+    &:nth-child(2) { animation-delay: 380ms; }
+  }
+
+  .lead,
+  .ctas,
+  .hint {
+    animation: rise 500ms $ease-out 800ms both;
+  }
+}

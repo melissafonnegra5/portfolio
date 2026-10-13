@@ -1,0 +1,49 @@
+@use 'tokens' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  height: 100%;
+  padding: $space-6;
+}
+
+.title {
+  font-size: $text-lg;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.description {
+  color: $ink-muted;
+  max-width: $measure;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-5;
+  padding-top: $space-2;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  min-height: 44px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+
+  &:hover {
+    color: $select;
+  }
+}
