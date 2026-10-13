@@ -31,43 +31,68 @@ export default function Navbar() {
       }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.navContainer}`}>
-        <a href="#inicio" className={styles.logo}>
-          <span className={styles.logoIcon}>{'</>'}</span>
-          <span className={styles.logoText}>MF</span>
+        <a href="#inicio" className={styles.logo} aria-label="Melissa Fonnegra, ir al inicio">
+          <span className={styles.logoIcon} aria-hidden="true">{'</>'}</span>
+          <span className={styles.logoText} aria-hidden="true">MF</span>
         </a>
 
-        <div className={`${styles.navLinks} ${mobileOpen ? styles.open : ''}`}>
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`${styles.navLink} ${
-                activeSection === link.href.replace('#', '') ? styles.active : ''
-              }`}
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        <nav aria-label="Principal">
+          <ul
+            id="menu-principal"
+            className={`${styles.navLinks} ${mobileOpen ? styles.open : ''}`}
+          >
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '');
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                    aria-current={isActive ? 'true' : undefined}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
         <button
+          type="button"
           className={`${styles.burger} ${mobileOpen ? styles.burgerOpen : ''}`}
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menú"
+          aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={mobileOpen}
+          aria-controls="menu-principal"
         >
-          <span />
-          <span />
-          <span />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
         </button>
       </div>
-    </nav>
+    </header>
   );
 }

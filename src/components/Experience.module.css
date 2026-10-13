@@ -1,4 +1,5 @@
 .timeline {
+  list-style: none;
   position: relative;
   max-width: 800px;
   margin: 0 auto;
@@ -87,7 +88,7 @@
   font-size: 0.7rem;
   font-weight: 600;
   background: rgba(124, 58, 237, 0.15);
-  color: var(--accent-purple);
+  color: #c4b5fd;
   border-radius: var(--radius-full);
   border: 1px solid rgba(124, 58, 237, 0.3);
 }
@@ -110,6 +111,17 @@
   color: var(--text-tertiary);
   line-height: 1.7;
   margin-bottom: 16px;
+}
+
+.highlights {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .tags {

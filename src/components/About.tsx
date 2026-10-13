@@ -1,5 +1,3 @@
-'use client';
-
 import styles from './About.module.css';
 
 export default function About() {
@@ -10,70 +8,71 @@ export default function About() {
           Sobre <span className="gradient-text">Mí</span>
         </h2>
         <p className="section-subtitle">
-          Transformo diseños en experiencias web funcionales, rápidas y mantenibles.
+          Ingeniera de Software enfocada en interfaces precisas, accesibles y fáciles de mantener.
         </p>
 
         <div className={styles.grid}>
           <div className={styles.storyCard}>
             <div className={`glass-card ${styles.card}`}>
-              <div className={styles.cardIcon}>🚀</div>
+              <div className={styles.cardIcon} aria-hidden="true">🚀</div>
               <h3 className={styles.cardTitle}>Mi Perfil Profesional</h3>
               <p className={styles.cardText}>
-                Soy desarrolladora web con más de 4 años de experiencia en la implementación
-                y mantenimiento de portales y aplicaciones web para marcas reconocidas en
-                sectores como salud, fintech, construcción, tecnología y consumo masivo.
+                Soy Ingeniera de Software con más de 6 años de experiencia en desarrollo frontend y
+                maquetación web para plataformas digitales y portales corporativos de alta demanda
+                en banca, salud, retail y consumo masivo.
               </p>
               <p className={styles.cardText}>
-                Me especializo en intervenir código fuente en ambientes productivos,
-                maquetación HTML/CSS responsiva, programación de funcionalidades frontend
-                como filtros, migas de pan y simuladores, así como la actualización y
-                carga de contenidos e imágenes en sitios web en producción.
+                Construyo interfaces responsivas y accesibles con HTML5 semántico, CSS3/SASS,
+                Bootstrap 5 y JavaScript moderno (ES6+), y tengo sólida experiencia en arquitecturas
+                desacopladas (Headless CMS) que integran Drupal con React y Next.js.
               </p>
               <p className={styles.cardText}>
-                Trabajo con JavaScript ES6+ (React, Next.js), HTML/CSS con Bootstrap 5
-                y PHP con Drupal CMS, combinando desarrollo frontend moderno con
-                gestión de contenidos empresariales.
+                Trabajo con diseño modular (Atomic Design), traslado fiel de prototipos en Figma
+                (Dev Mode / pixel-perfect), estándares de accesibilidad WCAG, SEO técnico, planes de
+                taggeo e integración de herramientas de IA para acelerar el desarrollo y mejorar la
+                calidad del código.
               </p>
             </div>
           </div>
 
           <div className={styles.infoCards}>
             <div className={`glass-card ${styles.miniCard}`}>
-              <div className={styles.miniIcon}>🎯</div>
+              <div className={styles.miniIcon} aria-hidden="true">🎯</div>
               <div>
                 <h4 className={styles.miniTitle}>Enfoque</h4>
                 <p className={styles.miniText}>
-                  Desarrollo frontend y mantenimiento de portales web en ambientes productivos para clientes de alto impacto
+                  Maquetación pixel-perfect, design systems con Atomic Design y Drupal headless con React y Next.js
                 </p>
               </div>
             </div>
 
             <div className={`glass-card ${styles.miniCard}`}>
-              <div className={styles.miniIcon}>🔧</div>
-              <div>
-                <h4 className={styles.miniTitle}>Especialidades</h4>
-                <p className={styles.miniText}>
-                  Maquetación HTML, funcionalidades JS (filtros, breadcrumbs, simuladores), gestión de contenidos CMS
-                </p>
-              </div>
-            </div>
-
-            <div className={`glass-card ${styles.miniCard}`}>
-              <div className={styles.miniIcon}>🏢</div>
+              <div className={styles.miniIcon} aria-hidden="true">🏢</div>
               <div>
                 <h4 className={styles.miniTitle}>Sectores</h4>
                 <p className={styles.miniText}>
-                  Salud (EPS), Fintech, Construcción, Tecnología, Consumo masivo, Banca y Seguros
+                  Banca y finanzas, salud, retail y consumo masivo, construcción y tecnología
                 </p>
               </div>
             </div>
 
             <div className={`glass-card ${styles.miniCard}`}>
-              <div className={styles.miniIcon}>🌱</div>
+              <div className={styles.miniIcon} aria-hidden="true">🎓</div>
               <div>
-                <h4 className={styles.miniTitle}>Crecimiento</h4>
+                <h4 className={styles.miniTitle}>Formación</h4>
                 <p className={styles.miniText}>
-                  En constante evolución desde HTML/CSS hacia React y Next.js, siempre con foco en código limpio y rendimiento
+                  Ingeniería de Software (Politécnico Grancolombiano), Tecnología ADSI y Técnico en
+                  Programación de Software (SENA)
+                </p>
+              </div>
+            </div>
+
+            <div className={`glass-card ${styles.miniCard}`}>
+              <div className={styles.miniIcon} aria-hidden="true">🌎</div>
+              <div>
+                <h4 className={styles.miniTitle}>Idiomas</h4>
+                <p className={styles.miniText}>
+                  Español nativo · Inglés técnico (lectura y documentación)
                 </p>
               </div>
             </div>

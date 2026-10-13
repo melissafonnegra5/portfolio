@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="contenido" tabIndex={-1}>
         <Hero />
         <About />
         <Skills />
