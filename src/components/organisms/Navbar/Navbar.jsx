@@ -27,18 +27,32 @@ export default function Navbar({ links, ids, ui, targetIds }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState('');
 
-  // The active section is the one crossing the upper band of the screen
+  // The active section is the last one whose top has passed the upper third
+  // of the screen. At the very bottom the last section wins: on tall screens
+  // the footer can never scroll that high.
   useEffect(() => {
     const sections = links.map((link) => document.getElementById(ids[link.id])).filter(Boolean);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length) setActiveId(visible[0].target.id);
-      },
-      { rootMargin: '-30% 0px -60% 0px' }
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      const line = window.innerHeight / 3;
+      const passed = sections.filter((section) => section.getBoundingClientRect().top <= line);
+      const current = atBottom ? sections.at(-1) : passed.at(-1);
+      setActiveId(current ? current.id : '');
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
   }, [links, ids]);
 
   useEffect(() => {
